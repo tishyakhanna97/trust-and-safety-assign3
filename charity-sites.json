@@ -1,0 +1,32 @@
+{
+  "gofundme.com": {
+    "type": "crowdfunding",
+    "country": "global",
+    "verified": true
+  },
+  "givebutter.com": {
+    "type": "crowdfunding",
+    "country": "global",
+    "verified": true
+  },
+  "redcross.org": {
+    "type": "ngo",
+    "country": "global",
+    "verified": true
+  },
+  "unicef.org": {
+    "type": "ngo",
+    "country": "global",
+    "verified": true
+  },
+  "paypal.me": {
+    "type": "p2p",
+    "country": "global",
+    "verified": true
+  },
+  "cash.app": {
+    "type": "p2p",
+    "country": "us",
+    "verified": true
+  }
+}
