@@ -1,0 +1,278 @@
+{
+  "gofundme.com": {
+    "type": "crowdfunding",
+    "verified": true,
+    "recipient_type": "mixed",
+    "notes": "Major global crowdfunding platform used by individuals and organizations."
+  },
+  "givebutter.com": {
+    "type": "crowdfunding",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Nonprofit-friendly fundraising platform."
+  },
+  "justgiving.com": {
+    "type": "crowdfunding",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Global charity fundraising platform."
+  },
+  "fundly.com": {
+    "type": "crowdfunding",
+    "verified": true,
+    "recipient_type": "mixed",
+    "notes": "Used by individuals and nonprofits."
+  },
+  "mightycause.com": {
+    "type": "crowdfunding",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Nonprofit-focused fundraising."
+  },
+  "givealittle.co.nz": {
+    "type": "crowdfunding",
+    "verified": true,
+    "recipient_type": "mixed",
+    "notes": "New Zealand giving platform."
+  },
+
+
+  "donorschoose.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Verified US nonprofit for school donations."
+  },
+  "savethechildren.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "International humanitarian organization."
+  },
+  "unicef.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "UN Children’s Fund official site."
+  },
+  "redcross.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "American Red Cross donations."
+  },
+  "ifrc.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "International Federation of Red Cross."
+  },
+  "wfp.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "World Food Programme."
+  },
+  "oxfam.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Global poverty relief organization."
+  },
+  "doctorswithoutborders.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Médecins Sans Frontières."
+  },
+  "mercycorps.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Global humanitarian aid."
+  },
+  "charitywater.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Clean water nonprofit."
+  },
+  "directrelief.org": {
+    "type": "ngo",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Medical aid nonprofit."
+  },
+
+
+  "secure.actblue.com": {
+    "type": "political_fundraising",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Verified political fundraising processor."
+  },
+  "winred.com": {
+    "type": "political_fundraising",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Verified Republican fundraising platform."
+  },
+
+
+  "paypal.com": {
+    "type": "p2p",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "General payment processor."
+  },
+  "paypal.me": {
+    "type": "p2p",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "Personal payment portal."
+  },
+  "venmo.com": {
+    "type": "p2p",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "Personal peer-to-peer payment."
+  },
+  "cash.app": {
+    "type": "p2p",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "Square’s peer-to-peer payment platform."
+  },
+  "zellepay.com": {
+    "type": "p2p",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "Bank-to-bank payments."
+  },
+  "wise.com": {
+    "type": "p2p",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "International transfers."
+  },
+  "revolut.com": {
+    "type": "p2p",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "International banking + P2P."
+  },
+
+
+  "stripe.com": {
+    "type": "processor",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Payment processor frequently embedded in donation sites."
+  },
+  "checkout.stripe.com": {
+    "type": "processor",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Stripe checkout host."
+  },
+  "squareup.com": {
+    "type": "processor",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Square pay processor."
+  },
+  "square.site": {
+    "type": "processor",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Hosted Square merchant sites (often donation pages)."
+  },
+
+
+  "donorbox.org": {
+    "type": "donation_saas",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Donation SaaS used by many nonprofits."
+  },
+  "givewp.com": {
+    "type": "donation_saas",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Donation plugin used by small nonprofits."
+  },
+  "neoncrm.com": {
+    "type": "donation_saas",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "CRM for nonprofits."
+  },
+  "bloomerang.co": {
+    "type": "donation_saas",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Church & nonprofit donor tools."
+  },
+
+
+  "securelb.imodules.com": {
+    "type": "institutional_giving",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "University and alumni giving portal."
+  },
+  "givecampus.com": {
+    "type": "institutional_giving",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "School & university fundraising."
+  },
+
+
+  "amazon.com": {
+    "type": "wishlist",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "Used for direct support / mutual aid gifting."
+  },
+  "target.com": {
+    "type": "wishlist",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "Target wishlist giving."
+  },
+  "walmart.com": {
+    "type": "wishlist",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "Walmart registry used in mutual aid."
+  },
+
+
+  "transanta.org": {
+    "type": "mutual_aid",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "Trans youth direct-support mutual aid program."
+  },
+  "mutualaidhub.org": {
+    "type": "mutual_aid",
+    "verified": true,
+    "recipient_type": "personal",
+    "notes": "Mutual aid directory."
+  },
+
+
+  "coinbase.com": {
+    "type": "crypto_donation",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Crypto donation portal (The Giving Block integrations)."
+  },
+  "thegivingblock.com": {
+    "type": "crypto_donation",
+    "verified": true,
+    "recipient_type": "organizational",
+    "notes": "Crypto fundraising for nonprofits."
+  }
+}

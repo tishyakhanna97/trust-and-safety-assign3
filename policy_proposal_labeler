@@ -1,0 +1,376 @@
+"""
+policy_proposal_labeler.py
+
+Donation-Related Post Labeler for Bluesky
+----------------------------------------
+This labeler:
+1) Detects potentially donation-related content
+2) Extracts endpoints (URLs, QR-embedded URLs, payment handles)
+3) Performs multi-layer verification:
+   - Account-level verification via Bluesky API
+   - Post-level verification (claims)
+   - Endpoint-level verification (domain, DB, APIs)
+4) Assigns “potentially donation-related” labels to posts
+
+"""
+
+import argparse
+import os
+import re
+from typing import List, Dict, Optional
+
+import requests
+from dotenv import load_dotenv
+from atproto import Client, models
+from atproto_client.models.com.atproto.admin.defs import RepoRef
+from atproto_client.models.com.atproto.repo.strong_ref import Main
+
+# ================================
+# Setup
+# ================================
+load_dotenv(override=True)
+USERNAME = os.getenv("USERNAME")
+PW = os.getenv("PW")
+
+
+# ============================================================
+# Utility: Handle → DID
+# ============================================================
+def did_from_handle(handle: str) -> str:
+    """
+    Resolve DID associated with handle.
+    """
+    return requests.get(
+        "https://bsky.social/xrpc/com.atproto.identity.resolveHandle",
+        params={"handle": handle},
+        timeout=10,
+    ).json()["did"]
+
+
+# ============================================================
+# Utility: Bluesky Post Fetcher
+# ============================================================
+def post_from_url(client: Client, url: str):
+    """
+    Extract the post given a public URL.
+    """
+    parts = url.split("/")
+    rkey = parts[-1]
+    handle = parts[-3]
+    return client.get_post(rkey, handle)
+
+
+# ============================================================
+# MODULE 1 — Donation Intent Classifier
+# ============================================================
+class DonationIntentClassifier:
+    """
+    Placeholder module for the donation intent model.
+    Replace the heuristic with your ML model.
+    """
+
+    donation_keywords = [
+        "donate", "fundraiser", "gofundme", "venmo", "paypal",
+        "cashapp", "help us raise", "raising money", "support us",
+    ]
+
+    def predict(self, text: str) -> Dict:
+        """
+        Return donation intent (heuristic for now).
+        Replace with DistilBERT or RoBERTa classifier.
+        """
+        lowered = text.lower()
+        hit = any(kw in lowered for kw in self.donation_keywords)
+
+        return {
+            "is_donation_related": hit,
+            "confidence": 0.75 if hit else 0.10,
+        }
+
+
+# ============================================================
+# MODULE 2 — Endpoint Extractor (URL + QR + Payment Handles)
+# ============================================================
+class EndpointExtractor:
+    """
+    Extract URLs, QR-embedded URLs, CashApp / Venmo handles.
+    """
+
+    url_pattern = re.compile(r"(https?://[^\s]+)")
+    cash_pattern = re.compile(r"\$[A-Za-z0-9_]+")
+    venmo_pattern = re.compile(r"@?[A-Za-z0-9_]+")
+
+    def extract_urls(self, text: str) -> List[str]:
+        return self.url_pattern.findall(text)
+
+    def extract_qr_urls(self, post) -> List[str]:
+        """
+        Placeholder — implement QR decoding on post.embedded media.
+        """
+        return []  # TODO
+
+    def extract_payment_handles(self, text: str) -> List[str]:
+        handles = []
+
+        for m in self.cash_pattern.findall(text):
+            if m.startswith("$"):
+                handles.append({"type": "cashapp", "handle": m})
+
+        # TODO: refine Venmo detection
+        return handles
+
+    def run(self, text: str, post) -> List[Dict]:
+        urls = self.extract_urls(text)
+        qr_urls = self.extract_qr_urls(post)
+        handles = self.extract_payment_handles(text)
+
+        endpoints = []
+        for u in urls:
+            endpoints.append({"type": "url", "source": "text", "url": u})
+        for u in qr_urls:
+            endpoints.append({"type": "url", "source": "qr", "url": u})
+        for h in handles:
+            endpoints.append(h)
+
+        return endpoints
+
+
+# ============================================================
+# MODULE 3 — Donation Target Classification (Organization vs Individual)
+# ============================================================
+class DonationTypeClassifier:
+    """
+    Classify donation as targeting an organization or individual.
+    Replace heuristics with NER or ML model.
+    """
+
+    org_keywords = ["foundation", "nonprofit", "charity", "org", "ngo"]
+
+    def predict(self, text: str) -> Dict:
+        lowered = text.lower()
+
+        if any(kw in lowered for kw in self.org_keywords):
+            return {"donation_type": "organization", "confidence": 0.7}
+
+        return {"donation_type": "individual", "confidence": 0.5}
+
+
+# ============================================================
+# MODULE 4 — Multi-layer Verification System
+# ============================================================
+class VerificationSystem:
+    """
+    Account-level, Post-level, Endpoint-level verification logic.
+    """
+
+    VERIFIED_ORG_DOMAINS = {
+        "redcross.org", "unicef.org", "justgiving.com",
+        "givebutter.com",
+    }
+
+    def verify_account(self, client: Client, actor_handle: str) -> Dict:
+        """
+        Use Bluesky profile API to check if the account is verified org.
+        """
+        did = did_from_handle(actor_handle)
+        profile = client.get_profile(actor_handle)
+
+        # TODO: check labeler tags or verified DIDs
+        return {
+            "poster_verified_org": False,   # placeholder
+            "profile_did": did,
+        }
+
+    def verify_post_claims(self, text: str) -> Dict:
+        """
+        NLP to detect 'claim of official status'.
+        Placeholder.
+        """
+        lowered = text.lower()
+        claim = "official" in lowered or "nonprofit" in lowered
+
+        return {
+            "post_claims_verified_org": claim,
+            "confidence": 0.5 if claim else 0.05,
+        }
+
+    def verify_endpoint(self, endpoints: List[Dict]) -> List[Dict]:
+        verified = []
+
+        for ep in endpoints:
+            if ep.get("type") == "url":
+                domain = ep["url"].split("/")[2]
+
+                is_verified_domain = domain in self.VERIFIED_ORG_DOMAINS
+
+                verified.append({
+                    "url": ep["url"],
+                    "domain": domain,
+                    "domain_verified": is_verified_domain,
+                    "final_verdict": (
+                        "fully_verified" if is_verified_domain else "unverified"
+                    )
+                })
+
+            elif ep.get("type") in ["cashapp", "venmo"]:
+                verified.append({
+                    "handle": ep["handle"],
+                    "domain_verified": False,
+                    "final_verdict": "peer_to_peer_unverified"
+                })
+
+        return verified
+
+
+# ============================================================
+# MODULE 5 — Risk Scoring
+# ============================================================
+class RiskScorer:
+    """
+    Combine all signals into a risk score.
+    """
+
+    def compute(self, intent, endpoint_verifications) -> Dict:
+        score = 0.0
+
+        # high risk: unverified domain + donation intent
+        for ep in endpoint_verifications:
+            if ep["final_verdict"] == "unverified":
+                score += 0.4
+            if ep["final_verdict"] == "peer_to_peer_unverified":
+                score += 0.3
+
+        # donation intent
+        if intent["is_donation_related"]:
+            score += 0.2
+
+        return {
+            "risk_score": min(score, 1.0),
+            "risk_level": ("high" if score > 0.7 else
+                           "medium" if score > 0.3 else
+                           "low")
+        }
+
+
+# ============================================================
+# MODULE 6 — Final Label Decision
+# ============================================================
+class LabelAssembler:
+    """
+    Converts all signals into Bluesky-compatible labels.
+    """
+    def assemble(self, intent, donation_type, verifications, risk) -> List[str]:
+        labels = []
+
+        if intent["is_donation_related"]:
+            labels.append("donation:related")
+
+        if donation_type["donation_type"] == "organization":
+            labels.append("donation:organization")
+        else:
+            labels.append("donation:individual")
+
+        # endpoint verification labels
+        if any(v["domain_verified"] for v in verifications):
+            labels.append("donation:verified_endpoint")
+        else:
+            labels.append("donation:unverified_endpoint")
+
+        # risk level
+        if risk["risk_level"] == "high":
+            labels.append("donation:needs_review")
+
+        return labels
+
+
+# ============================================================
+# Apply Label to Post / Account (Provided Starter)
+# ============================================================
+def label_account(client: Client, handle: str, label_value: List[str]):
+    did = did_from_handle(handle)
+    data = models.ToolsOzoneModerationEmitEvent.Data(
+        created_by=client.me.did,
+        event=models.ToolsOzoneModerationDefs.ModEventLabel(
+            create_label_vals=label_value,
+            negate_label_vals=[],
+        ),
+        subject=RepoRef(did=did),
+        subject_blob_cids=[],
+    )
+    return client.tools.ozone.moderation.emit_event(data)
+
+
+def label_post(client: Client, labeler_client: Client, post_url: str, label_value: List[str]):
+    post = post_from_url(client, post_url)
+    post_ref = Main(cid=post.cid, uri=post.uri)
+
+    data = models.ToolsOzoneModerationEmitEvent.Data(
+        created_by=client.me.did,
+        event=models.ToolsOzoneModerationDefs.ModEventLabel(
+            create_label_vals=label_value,
+            negate_label_vals=[],
+        ),
+        subject=post_ref,
+        subject_blob_cids=[],
+    )
+    return labeler_client.tools.ozone.moderation.emit_event(data)
+
+
+# ============================================================
+# MAIN PIPELINE EXECUTION
+# ============================================================
+def run_pipeline_on_post(client, labeler_client, post_url):
+    post = post_from_url(client, post_url)
+    text = post.value.text
+    actor = post.author.handle
+
+    # Initialize modules
+    intent_model = DonationIntentClassifier()
+    extractor = EndpointExtractor()
+    type_model = DonationTypeClassifier()
+    verifier = VerificationSystem()
+    risk = RiskScorer()
+    assembler = LabelAssembler()
+
+    # --- Pipeline Steps ---
+    intent = intent_model.predict(text)
+    if not intent["is_donation_related"]:
+        return ["donation:not_related"]
+
+    endpoints = extractor.run(text, post)
+    donation_type = type_model.predict(text)
+
+    account_verif = verifier.verify_account(client, actor)
+    post_claim = verifier.verify_post_claims(text)
+    endpoint_verif = verifier.verify_endpoint(endpoints)
+
+    risk_info = risk.compute(intent, endpoint_verif)
+
+    labels = assembler.assemble(intent, donation_type, endpoint_verif, risk_info)
+    return labels
+
+
+# ============================================================
+# CLI
+# ============================================================
+def main():
+    client = Client()
+    client.login(USERNAME, PW)
+    did = did_from_handle(USERNAME)
+    labeler_client = client.with_proxy("atproto_labeler", did)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("post_url", type=str)
+    args = parser.parse_args()
+
+    # run pipeline
+    labels = run_pipeline_on_post(client, labeler_client, args.post_url)
+
+    # apply labels
+    result = label_post(client, labeler_client, args.post_url, labels)
+    print("Labels applied:", labels)
+    print("Result:", result)
+
+
+if __name__ == "__main__":
+    main()
