@@ -28,6 +28,7 @@ from pyzbar.pyzbar import decode as qr_decode
 from atproto import Client, models
 from atproto_client.models.com.atproto.admin.defs import RepoRef
 from atproto_client.models.com.atproto.repo.strong_ref import Main
+from urllib.parse import urlparse
 
 
 # ================================
@@ -196,11 +197,58 @@ class EndpointExtractor:
     def extract_urls(self, text: str) -> List[str]:
         return self.url_pattern.findall(text)
 
-    def extract_qr_urls(self, post) -> List[str]:
+    def extract_qr_urls(self, post: Any) -> List[str]:
         """
-        Placeholder — implement QR decoding on post.embedded media.
+        Decode QR codes from embedded images and return any URLs they contain.
+
+        Assumes `post` is a FeedViewPost-like object:
+            post.embed.images -> list of image views
+            each image has `fullsize` or `thumb` URL attributes.
         """
-        return []  # TODO
+        results: List[str] = []
+
+        embed = getattr(post, "embed", None)
+        if not embed:
+            return results
+
+        images = getattr(embed, "images", None)
+        if not images:
+            return results
+
+        for img in images:
+            img_url = getattr(img, "fullsize", None) or getattr(img, "thumb", None)
+            if not img_url:
+                continue
+
+            try:
+                resp = requests.get(img_url, timeout=5)
+                resp.raise_for_status()
+                pil_img = Image.open(BytesIO(resp.content))
+            except Exception:
+                continue
+
+            try:
+                decoded = qr_decode(pil_img)
+            except Exception:
+                continue
+
+            for qr in decoded:
+                try:
+                    data = qr.data.decode("utf-8", errors="ignore").strip()
+                except Exception:
+                    continue
+
+                if self.extract_urls(data):
+                    results.append(data)
+
+        # dedupe while preserving order
+        seen = set()
+        deduped = []
+        for u in results:
+            if u not in seen:
+                seen.add(u)
+                deduped.append(u)
+        return deduped
 
     def extract_payment_handles(self, text: str) -> List[str]:
         handles = []
