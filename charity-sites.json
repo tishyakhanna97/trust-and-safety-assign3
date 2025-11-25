@@ -1,278 +1,1070 @@
 {
   "gofundme.com": {
-    "type": "crowdfunding",
-    "verified": true,
+    "category": "fundraising_platform",
+    "cause": "other",
     "recipient_type": "mixed",
-    "notes": "Major global crowdfunding platform used by individuals and organizations."
+    "notes": ""
+  },
+  "www.gofundme.com": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "gofund.me": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
   },
   "givebutter.com": {
-    "type": "crowdfunding",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "Nonprofit-friendly fundraising platform."
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
   },
   "justgiving.com": {
-    "type": "crowdfunding",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "Global charity fundraising platform."
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "mightydomain.com": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
   },
   "fundly.com": {
-    "type": "crowdfunding",
-    "verified": true,
+    "category": "fundraising_platform",
+    "cause": "other",
     "recipient_type": "mixed",
-    "notes": "Used by individuals and nonprofits."
+    "notes": ""
   },
-  "mightycause.com": {
-    "type": "crowdfunding",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "Nonprofit-focused fundraising."
+  "fundrazr.com": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "classy.org": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
   },
   "givealittle.co.nz": {
-    "type": "crowdfunding",
-    "verified": true,
+    "category": "fundraising_platform",
+    "cause": "other",
     "recipient_type": "mixed",
-    "notes": "New Zealand giving platform."
+    "notes": ""
   },
-
-
-  "donorschoose.org": {
-    "type": "ngo",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "Verified US nonprofit for school donations."
+  "crowdrise.com": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
   },
-  "savethechildren.org": {
-    "type": "ngo",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "International humanitarian organization."
+  "kicktipp.com": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "donate.ly": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "giveindia.org": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "globalgiving.org": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "every.org": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "domains.com": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "fundraiseup.com": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "charidy.com": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "pledge.to": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "chuffed.org": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
+  },
+  "youcaring.com": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": ""
   },
   "unicef.org": {
-    "type": "ngo",
-    "verified": true,
+    "category": "organization",
+    "cause": "poverty",
     "recipient_type": "organizational",
-    "notes": "UN Children’s Fund official site."
+    "notes": ""
   },
-  "redcross.org": {
-    "type": "ngo",
-    "verified": true,
+  "savethechildren.org": {
+    "category": "organization",
+    "cause": "poverty",
     "recipient_type": "organizational",
-    "notes": "American Red Cross donations."
-  },
-  "ifrc.org": {
-    "type": "ngo",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "International Federation of Red Cross."
-  },
-  "wfp.org": {
-    "type": "ngo",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "World Food Programme."
+    "notes": ""
   },
   "oxfam.org": {
-    "type": "ngo",
-    "verified": true,
+    "category": "organization",
+    "cause": "poverty",
     "recipient_type": "organizational",
-    "notes": "Global poverty relief organization."
+    "notes": ""
   },
-  "doctorswithoutborders.org": {
-    "type": "ngo",
-    "verified": true,
+  "care.org": {
+    "category": "organization",
+    "cause": "poverty",
     "recipient_type": "organizational",
-    "notes": "Médecins Sans Frontières."
+    "notes": ""
   },
   "mercycorps.org": {
-    "type": "ngo",
-    "verified": true,
+    "category": "organization",
+    "cause": "poverty",
     "recipient_type": "organizational",
-    "notes": "Global humanitarian aid."
+    "notes": ""
   },
-  "charitywater.org": {
-    "type": "ngo",
-    "verified": true,
+  "worldvision.org": {
+    "category": "organization",
+    "cause": "poverty",
     "recipient_type": "organizational",
-    "notes": "Clean water nonprofit."
+    "notes": ""
+  },
+  "heifer.org": {
+    "category": "organization",
+    "cause": "poverty",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "planusa.org": {
+    "category": "organization",
+    "cause": "poverty",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "givedirectly.org": {
+    "category": "organization",
+    "cause": "poverty",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "concern.net": {
+    "category": "organization",
+    "cause": "poverty",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "actionagainsthunger.org": {
+    "category": "organization",
+    "cause": "poverty",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "fh.org": {
+    "category": "organization",
+    "cause": "poverty",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "foodforthepoor.org": {
+    "category": "organization",
+    "cause": "poverty",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "redcross.org": {
+    "category": "organization",
+    "cause": "disaster",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "ifrc.org": {
+    "category": "organization",
+    "cause": "disaster",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "icrc.org": {
+    "category": "organization",
+    "cause": "disaster",
+    "recipient_type": "organizational",
+    "notes": ""
   },
   "directrelief.org": {
-    "type": "ngo",
-    "verified": true,
+    "category": "organization",
+    "cause": "disaster",
     "recipient_type": "organizational",
-    "notes": "Medical aid nonprofit."
+    "notes": ""
   },
-
-
-  "secure.actblue.com": {
-    "type": "political_fundraising",
-    "verified": true,
+  "wfp.org": {
+    "category": "organization",
+    "cause": "disaster",
     "recipient_type": "organizational",
-    "notes": "Verified political fundraising processor."
+    "notes": ""
+  },
+  "teamrubiconusa.org": {
+    "category": "organization",
+    "cause": "disaster",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "map.org": {
+    "category": "organization",
+    "cause": "disaster",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "shelterbox.org": {
+    "category": "organization",
+    "cause": "disaster",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "samaritanspurse.org": {
+    "category": "organization",
+    "cause": "disaster",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "rescue.org": {
+    "category": "organization",
+    "cause": "war",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "donation.dec.org.uk": {
+    "category": "organization",
+    "cause": "war",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "supportukraine.dev": {
+    "category": "organization",
+    "cause": "war",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "u24.gov.ua": {
+    "category": "organization",
+    "cause": "war",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "halotrust.org": {
+    "category": "organization",
+    "cause": "war",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "ami-usa.org": {
+    "category": "organization",
+    "cause": "war",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "nrc.no": {
+    "category": "organization",
+    "cause": "war",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "wwf.org": {
+    "category": "organization",
+    "cause": "animal",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "aspca.org": {
+    "category": "organization",
+    "cause": "animal",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "humanesociety.org": {
+    "category": "organization",
+    "cause": "animal",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "bestfriends.org": {
+    "category": "organization",
+    "cause": "animal",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "ifaw.org": {
+    "category": "organization",
+    "cause": "animal",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "peta.org": {
+    "category": "organization",
+    "cause": "animal",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "worldanimalprotection.org": {
+    "category": "organization",
+    "cause": "animal",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "defenders.org": {
+    "category": "organization",
+    "cause": "animal",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "nature.org": {
+    "category": "organization",
+    "cause": "environment",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "sierraclub.org": {
+    "category": "organization",
+    "cause": "environment",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "oceanconservancy.org": {
+    "category": "organization",
+    "cause": "environment",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "earthjustice.org": {
+    "category": "organization",
+    "cause": "environment",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "foe.org": {
+    "category": "organization",
+    "cause": "environment",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "rainforest-alliance.org": {
+    "category": "organization",
+    "cause": "environment",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "greenpeace.org": {
+    "category": "organization",
+    "cause": "environment",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "cancer.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "stjude.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "diabetes.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "alz.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "lung.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "heart.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "cancerresearchuk.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "mskcc.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "breastcancer.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "livestrong.org": {
+    "category": "organization",
+    "cause": "health",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "donorschoose.org": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "khanacademy.org": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "teachforamerica.org": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "roomtoread.org": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "scholastic.com": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "universityofcalifornia.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "mit.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "harvard.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "stanford.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "princeton.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "berkeley.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "yale.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "cornell.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "columbia.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "brown.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "duke.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "uchicago.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "umich.edu": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "utoronto.ca": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "cam.ac.uk": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "ox.ac.uk": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "imperial.ac.uk": {
+    "category": "organization",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "actblue.com": {
+    "category": "political_fundraising",
+    "cause": "politics",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "secure.actblue.com": {
+    "category": "political_fundraising",
+    "cause": "politics",
+    "recipient_type": "organizational",
+    "notes": ""
   },
   "winred.com": {
-    "type": "political_fundraising",
-    "verified": true,
+    "category": "political_fundraising",
+    "cause": "politics",
     "recipient_type": "organizational",
-    "notes": "Verified Republican fundraising platform."
+    "notes": ""
   },
-
-
-  "paypal.com": {
-    "type": "p2p",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "General payment processor."
-  },
-  "paypal.me": {
-    "type": "p2p",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "Personal payment portal."
-  },
-  "venmo.com": {
-    "type": "p2p",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "Personal peer-to-peer payment."
-  },
-  "cash.app": {
-    "type": "p2p",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "Square’s peer-to-peer payment platform."
-  },
-  "zellepay.com": {
-    "type": "p2p",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "Bank-to-bank payments."
-  },
-  "wise.com": {
-    "type": "p2p",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "International transfers."
-  },
-  "revolut.com": {
-    "type": "p2p",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "International banking + P2P."
-  },
-
-
-  "stripe.com": {
-    "type": "processor",
-    "verified": true,
+  "anedot.com": {
+    "category": "political_fundraising",
+    "cause": "politics",
     "recipient_type": "organizational",
-    "notes": "Payment processor frequently embedded in donation sites."
+    "notes": ""
   },
-  "checkout.stripe.com": {
-    "type": "processor",
-    "verified": true,
+  "nationbuilder.com": {
+    "category": "political_fundraising",
+    "cause": "politics",
     "recipient_type": "organizational",
-    "notes": "Stripe checkout host."
+    "notes": ""
   },
-  "squareup.com": {
-    "type": "processor",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "Square pay processor."
-  },
-  "square.site": {
-    "type": "processor",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "Hosted Square merchant sites (often donation pages)."
-  },
-
-
   "donorbox.org": {
-    "type": "donation_saas",
-    "verified": true,
+    "category": "political_fundraising",
+    "cause": "politics",
     "recipient_type": "organizational",
-    "notes": "Donation SaaS used by many nonprofits."
+    "notes": ""
   },
-  "givewp.com": {
-    "type": "donation_saas",
-    "verified": true,
+  "victoryfund.org": {
+    "category": "political_fundraising",
+    "cause": "politics",
     "recipient_type": "organizational",
-    "notes": "Donation plugin used by small nonprofits."
+    "notes": ""
   },
-  "neoncrm.com": {
-    "type": "donation_saas",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "CRM for nonprofits."
-  },
-  "bloomerang.co": {
-    "type": "donation_saas",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "Church & nonprofit donor tools."
-  },
-
-
-  "securelb.imodules.com": {
-    "type": "institutional_giving",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "University and alumni giving portal."
-  },
-  "givecampus.com": {
-    "type": "institutional_giving",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "School & university fundraising."
-  },
-
-
-  "amazon.com": {
-    "type": "wishlist",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "Used for direct support / mutual aid gifting."
-  },
-  "target.com": {
-    "type": "wishlist",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "Target wishlist giving."
-  },
-  "walmart.com": {
-    "type": "wishlist",
-    "verified": true,
-    "recipient_type": "personal",
-    "notes": "Walmart registry used in mutual aid."
-  },
-
-
   "transanta.org": {
-    "type": "mutual_aid",
-    "verified": true,
+    "category": "mutual_aid",
+    "cause": "other",
     "recipient_type": "personal",
-    "notes": "Trans youth direct-support mutual aid program."
+    "notes": ""
   },
   "mutualaidhub.org": {
-    "type": "mutual_aid",
-    "verified": true,
+    "category": "mutual_aid",
+    "cause": "other",
     "recipient_type": "personal",
-    "notes": "Mutual aid directory."
+    "notes": ""
   },
-
-
-  "coinbase.com": {
-    "type": "crypto_donation",
-    "verified": true,
-    "recipient_type": "organizational",
-    "notes": "Crypto donation portal (The Giving Block integrations)."
+  "mutualaid.nyc": {
+    "category": "mutual_aid",
+    "cause": "other",
+    "recipient_type": "personal",
+    "notes": ""
+  },
+  "mutualaidnetwork.org": {
+    "category": "mutual_aid",
+    "cause": "other",
+    "recipient_type": "personal",
+    "notes": ""
   },
   "thegivingblock.com": {
-    "type": "crypto_donation",
-    "verified": true,
+    "category": "crypto_donation",
+    "cause": "cryptocurrency",
     "recipient_type": "organizational",
-    "notes": "Crypto fundraising for nonprofits."
+    "notes": ""
+  },
+  "binance.charity": {
+    "category": "crypto_donation",
+    "cause": "cryptocurrency",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "bitpay.com": {
+    "category": "crypto_donation",
+    "cause": "cryptocurrency",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "coinbase.com": {
+    "category": "crypto_donation",
+    "cause": "cryptocurrency",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "kraken.com": {
+    "category": "crypto_donation",
+    "cause": "cryptocurrency",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "ethereum.foundation": {
+    "category": "crypto_donation",
+    "cause": "cryptocurrency",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "paypal.me": {
+    "category": "p2p_payment",
+    "cause": "other",
+    "recipient_type": "personal",
+    "notes": ""
+  },
+  "paypal.com": {
+    "category": "p2p_payment",
+    "cause": "other",
+    "recipient_type": "personal",
+    "notes": ""
+  },
+  "cash.app": {
+    "category": "p2p_payment",
+    "cause": "other",
+    "recipient_type": "personal",
+    "notes": ""
+  },
+  "venmo.com": {
+    "category": "p2p_payment",
+    "cause": "other",
+    "recipient_type": "personal",
+    "notes": ""
+  },
+  "wise.com": {
+    "category": "p2p_payment",
+    "cause": "other",
+    "recipient_type": "personal",
+    "notes": ""
+  },
+  "revolut.com": {
+    "category": "p2p_payment",
+    "cause": "other",
+    "recipient_type": "personal",
+    "notes": ""
+  },
+  "zellepay.com": {
+    "category": "p2p_payment",
+    "cause": "other",
+    "recipient_type": "personal",
+    "notes": ""
+  },
+  "givecampus.com": {
+    "category": "institutional_giving",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "alumni.harvard.edu": {
+    "category": "institutional_giving",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "giving.stanford.edu": {
+    "category": "institutional_giving",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "givingday.mit.edu": {
+    "category": "institutional_giving",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "berkeley.edu/give": {
+    "category": "institutional_giving",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "giving.yale.edu": {
+    "category": "institutional_giving",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "gifts.duke.edu": {
+    "category": "institutional_giving",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "giving.utoronto.ca": {
+    "category": "institutional_giving",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "giving.ubc.ca": {
+    "category": "institutional_giving",
+    "cause": "education",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "water.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "charitywater.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "gatesfoundation.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "fordfoundation.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "rockefellerfoundation.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "unfpa.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "unwomen.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "undp.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "unhcr.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "globalfund.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "path.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "hki.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "fhi360.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "adra.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "careindia.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "nyu.edu": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "ucla.edu": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "usc.edu": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "utexas.edu": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "utexas.edu/giving": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "psu.edu": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "gatech.edu": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "umass.edu": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "upenn.edu": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "northwestern.edu": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "350.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "edf.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "worldwildlife.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "wildlifetrusts.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "rspca.org.uk": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "bluecross.org.uk": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "dogstrust.org.uk": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "brac.net": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "orphansinneed.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "savethechildren.net": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "crs.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "globalrescue.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "airrescue.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "teachforall.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "educationaboveall.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "doctorswithoutborders.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "cdcfoundation.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "ronaldhouse.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "fundraiser.com": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "betterworld.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "give.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
+  },
+  "helphope.org": {
+    "category": "organization",
+    "cause": "other",
+    "recipient_type": "organizational",
+    "notes": ""
   }
 }
