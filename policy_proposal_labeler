@@ -63,7 +63,10 @@ def post_from_url(client: Client, url: str):
     parts = url.split("/")
     rkey = parts[-1]
     handle = parts[-3]
-    return client.get_post(rkey, handle)
+    try:
+        return client.get_post(rkey, handle)
+    except:
+        raise Exception("URL did not work")
 
 
 def extract_did_from_uri(uri: str) -> str:
@@ -522,26 +525,41 @@ class LabelAssembler:
     Converts all signals into Bluesky-compatible labels.
     """
 
-    def assemble(self, intent, donation_type, verifications, risk) -> List[str]:
-        labels = []
+    def assemble(self, intent, donation_type, verifications, risk, endpoints) -> dict:
+        labels = {
+            "donation_related": False,
+            "donation_target": None,  # organization / individual
+            "verified_organization": False,
+            "verified_endpoint": False,
+            "needs_review": False,
+            "verified_claim": False,
+            "contains_payment_mechanism": True if endpoints else False,
+        }
 
-        if intent["is_donation_related"]:
-            labels.append("donation:related")
+        # donation intent
+        if intent.get("is_donation_related"):
+            labels["donation_related"] = True
 
-        if donation_type["donation_type"] == "organization":
-            labels.append("donation:organization")
+        # donation type
+        dtype = donation_type.get("donation_type")
+        if dtype == "organization":
+            labels["donation_target"] = "organization"
         else:
-            labels.append("donation:individual")
+            labels["donation_target"] = "individual"
 
-        # endpoint verification labels
-        if any(v["domain_verified"] for v in verifications):
-            labels.append("donation:verified_endpoint")
-        else:
-            labels.append("donation:unverified_endpoint")
+        for v in verifications:
+            if not v:
+                continue
+            if v.get("poster_verified_org", None):
+                labels["verified_organization"] = v.get("poster_verified_org")
+            if v.get("post_claims_verified_org", None):
+                labels["verified_claim"] = v.get("post_claims_verified_org")
+            if v.get("domain_verified"):
+                labels["verified_endpoint"] = True
 
         # risk level
-        if risk["risk_level"] == "high":
-            labels.append("donation:needs_review")
+        if risk.get("risk_level") == "high":
+            labels["needs_review"] = True
 
         return labels
 
@@ -602,7 +620,7 @@ def run_pipeline_on_post(client, labeler_client, post_url):
     # --- Pipeline Steps ---
     intent = intent_model.predict(text)
     if not intent["is_donation_related"]:
-        return ["donation:not_related"]
+        return {"donation_related": False}
 
     endpoints = extractor.run(text, post)
     donation_type = type_model.predict(text)
@@ -613,7 +631,13 @@ def run_pipeline_on_post(client, labeler_client, post_url):
 
     risk_info = risk.compute(intent, endpoint_verif)
 
-    labels = assembler.assemble(intent, donation_type, endpoint_verif, risk_info)
+    labels = assembler.assemble(
+        intent,
+        donation_type,
+        [account_verif, post_claim, endpoint_verif],
+        risk_info,
+        endpoints,
+    )
     return labels
 
 
@@ -622,11 +646,16 @@ def run_pipeline_on_post(client, labeler_client, post_url):
 # ============================================================
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--csv_path", default="post.csv")
+    parser.add_argument("--csv_path", default="post1.csv")
     parser.add_argument(
         "--apply_labels",
         action="store_true",
         help="If set, send labels to the labeler; otherwise just print them.",
+    )
+    parser.add_argument(
+        "--output_csv",
+        default="post_with_preds.csv",
+        help="New CSV with ground truth + model predictions.",
     )
     args = parser.parse_args()
 
@@ -635,17 +664,56 @@ def main():
     did = did_from_handle(USERNAME)
     labeler_client = client.with_proxy("atproto_labeler", did)
 
-    # read all rows from CSV and run pipeline per URL
-    with open(args.csv_path, "r", encoding="utf-8", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            url = (row.get("source_url") or "").strip()
-            if not url:
-                continue
+    with open(args.csv_path, "r", encoding="utf-8", newline="") as f_in, open(
+        args.output_csv, "w", encoding="utf-8", newline=""
+    ) as f_out:
 
-            # run pipeline on this post
-            labels = run_pipeline_on_post(client, labeler_client, url)
+        reader = csv.DictReader(f_in)
+        base_fields = list(reader.fieldnames or [])
+
+        # predicted columns (same schema, but prefixed so you can compare)
+        pred_fields = [
+            "pred_donation_related",
+            "pred_contains_payment_mechanism",
+            "pred_verified_org",
+            "pred_urgent_language",
+            "pred_scam",
+            "pred_domain",
+        ]
+
+        fieldnames = base_fields + [f for f in pred_fields if f not in base_fields]
+        writer = csv.DictWriter(f_out, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for row in reader:
+            # copy over existing values unchanged
+            # pick URL from either "source_url" or "url"
+            url = (row.get("source_url") or row.get("url") or "").strip()
+
+            if not url:
+                # no URL → just write row with empty preds
+                for pf in pred_fields:
+                    row.setdefault(pf, "")
+                writer.writerow(row)
+                continue
+            labels = {}
+            try:
+                labels = run_pipeline_on_post(client, labeler_client, url)
+            except Exception as e:
+                print(e)
+                print(f"Failed for this url, skipping {url}")
+                continue
             print(f"{url} -> {labels}")
+
+            # fill prediction columns
+            row["pred_donation_related"] = labels.get("donation_related", "")
+            row["pred_contains_payment_mechanism"] = labels.get(
+                "contains_payment_mechanism", ""
+            )
+            row["pred_verified_org"] = labels.get("verified_organization", "")
+            row["pred_urgent_language"] = labels.get("urgent_language", "")
+
+            writer.writerow(row)
 
             if args.apply_labels:
                 result = label_post(client, labeler_client, url, labels)
