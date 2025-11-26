@@ -9,8 +9,10 @@ This system performs end-to-end donation-related activities detection for Bluesk
        pred_donation_related:{yes|no},
        pred_contains_payment_mechanism:{yes|no},
        pred_payment_mechanism:{fundraising_website|payment_link|payment_handle|qrcode|unsure|none},
-       verified_org:{yes|domain|no},
-       verified_type:{official/trusted/none}
+       pred_verified_org:{yes|domain|no},
+       pred_verified_type:{official/trusted/none},
+       pred_scam:{no/unsure/unknown}
+
 """
 
 import os
@@ -156,7 +158,7 @@ class EndpointExtractor:
     donation_path_kw = {
         "donate", "donation", "donating", 
         "fund", "fundraising", "support",
-        "give", "relief", "help"
+        "give", "relief", "help", "appeal"
     }
 
     # -------------------------------------------------------------
