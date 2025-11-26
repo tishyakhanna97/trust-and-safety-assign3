@@ -1,18 +1,16 @@
 """
 policy_proposal_labeler.py — Final Integrated Version (2025)
 
-This system performs end-to-end donation-related detection for Bluesky posts:
+This system performs end-to-end donation-related activities detection for Bluesky posts:
 1. Fuzzy-match donation intent
 2. Extract in text URLs, embeded URLs, QR code URLs, payment handles
-3. Classify endpoints using:
-       - charity_sites.json domain match
-       - keyword-based donation heuristics
-4. Verify organizational identity (account > endpoint)
-5. Final label assembly:
-       donation_related,
-       contains_payment_mechanism,
-       verified_org,
-       verified_type:{account|endpoint|none}
+3. Verify organizational identity (account verification + endpoint domain check)
+4. Final label assembly:
+       pred_donation_related:{yes|no},
+       pred_contains_payment_mechanism:{yes|no},
+       pred_payment_mechanism:{fundraising_website|payment_link|payment_handle|qrcode|unsure|none},
+       verified_org:{yes|domain|no},
+       verified_type:{official/trusted/none}
 """
 
 import os
@@ -20,7 +18,6 @@ import re
 import csv
 import json
 import argparse
-import urllib.parse
 from difflib import SequenceMatcher
 from typing import List, Dict, Any, Optional
 from io import BytesIO
@@ -41,7 +38,6 @@ from atproto_client.models.com.atproto.repo.strong_ref import Main
 load_dotenv(override=True)
 USERNAME = os.getenv("USERNAME")
 PW = os.getenv("PW")
-# GOOGLE_WEBRISK_API_KEY = os.getenv("GOOGLE_WEBRISK_API_KEY")
 
 # Load charity_sites.json
 with open("charity-sites.json", "r", encoding="utf-8") as f:
@@ -116,11 +112,6 @@ class DonationIntentClassifier:
         "please donate"
     ]
 
-
-    # url_patterns = [
-    #     re.compile(r"https?://\S*(donate|fund|support)\S*", re.IGNORECASE)
-    # ]
-
     def fuzzy_contains(self, text: str, keywords: List[str], threshold=0.8) -> bool:
         """
         Fuzzy match: any token with similarity >= threshold is considered matched.
@@ -140,9 +131,8 @@ class DonationIntentClassifier:
         t = text.lower()
         fuzzy_kw = self.fuzzy_contains(t, self.donation_keywords)
         phrase_kw = self.phrase_contains(t)
-        # url_signal = any(p.search(t) for p in self.url_patterns)
 
-        score = 0.6 * fuzzy_kw + 0.6 * phrase_kw #+ 0.4 * url_signal
+        score = 0.6 * fuzzy_kw + 0.6 * phrase_kw 
 
         return {
             "donation_related": score > 0.5,
@@ -151,7 +141,7 @@ class DonationIntentClassifier:
         }
 
 # ======================================================================
-# MODULE 2 — Endpoint Extractor (Only Extraction + Mechanism Classification)
+# MODULE 2 — Endpoint Extractor (Extraction + Mechanism Classification)
 # ======================================================================
 class EndpointExtractor:
     protocol_url_pattern = re.compile(r"https?://[^\s]+")
@@ -168,10 +158,6 @@ class EndpointExtractor:
         "fund", "fundraising", "support",
         "give", "relief", "help"
     }
-
-    # known_personal_domains = {
-    #     "paypal.me", "paypal.com", "venmo.com", "cash.app"
-    # }
 
     # -------------------------------------------------------------
     # Normalize domain
@@ -389,19 +375,15 @@ class EndpointExtractor:
 
         endpoints = []
 
-        # URL classification with new fields
+        # URL classification 
         for u in urls_all:
             endpoints.append(self.classify_url(u))
 
         # QR code override
         for q in urls_qr:
-            endpoints.append({
-                "mechanism": "qrcode",
-                "domain": "other",
-                "value": q,
-                "in_charity_db": False,
-                "recipient_type": None
-            })
+            classified = self.classify_url(q)
+            classified["source"] = "qrcode"
+            endpoints.append(classified)
 
         # Payment handles
         for h in handles:
@@ -410,7 +392,7 @@ class EndpointExtractor:
                 "domain": "other",
                 "value": h["value"],
                 "in_charity_db": False,
-                "recipient_type": None
+                "recipient_type": "personal"
             })
 
         # Detect mechanisms
@@ -434,7 +416,7 @@ class EndpointExtractor:
 
 
 # ======================================================================
-# MODULE 3+4 — OrgVerifier (account-level and endpoint-level)
+# MODULE 3 — OrgVerifier (account-level and endpoint-level)
 # ======================================================================
 class OrgVerifier:
 
@@ -465,9 +447,9 @@ class OrgVerifier:
         }
         """
 
-        # ============================================================
+        # -------------------------------------------------------------
         # 1. Account-level verification (official/trusted)
-        # ============================================================
+        # -------------------------------------------------------------
         verified_type = "none"
 
         if profile:
@@ -481,9 +463,9 @@ class OrgVerifier:
             elif trusted:
                 verified_type = "trusted"
 
-        # ============================================================
+        # -------------------------------------------------------------
         # 2. Endpoint-level verification (URL level)
-        # ============================================================
+        # -------------------------------------------------------------
         found_org_endpoint = False
         found_dot_org = False
 
@@ -492,12 +474,12 @@ class OrgVerifier:
             in_db = info.get("in_charity_db", False)
             recipient = info.get("recipient_type", None)
 
-            # (A) JSON + organizational → yes
+            # JSON + organizational → yes
             if in_db and recipient == "organizational":
                 found_org_endpoint = True
                 break
 
-            # (B) domain is .org but not in DB → unsure
+            # domain is .org but not in DB → domain
             if domain.endswith(".org") and not in_db:
                 found_dot_org = True
 
@@ -508,9 +490,9 @@ class OrgVerifier:
         else:
             verified_org = "no"
 
-        # ============================================================
+        # -------------------------------------------------------------
         # Final output (account-level & endpoint-level)
-        # ============================================================
+        # -------------------------------------------------------------
         return {
             "verified_org": verified_org,
             "verified_type": verified_type
@@ -518,54 +500,7 @@ class OrgVerifier:
 
 
 # ======================================================================
-# MODULE 6-7 — Google WebRisk Scam Checker
-# ======================================================================
-# class WebRiskChecker:
-#     def __init__(self, api_key):
-#         self.api_key = api_key
-
-#     def check(self, url: str):
-#         """
-#         Return:
-#         {
-#             "malicious": True/False,
-#             "threat_types": [...]
-#         }
-#         Only check if WebRisk key exists.
-#         """
-#         if not self.api_key:
-#             return {"malicious": False, "threat_types": []}
-
-#         encoded = urllib.parse.quote(url, safe="")
-#         endpoint = (
-#             f"https://webrisk.googleapis.com/v1/uris:search?key={self.api_key}&uri={encoded}"
-#         )
-
-#         try:
-#             r = requests.get(endpoint, timeout=4)
-#             data = r.json()
-#             if "threat" in data:
-#                 return {
-#                     "malicious": True,
-#                     "threat_types": data["threat"].get("threatTypes", []),
-#                 }
-#             return {"malicious": False, "threat_types": []}
-#         except:
-#             return {"malicious": False, "threat_types": []}
-
-#     def should_scan(self, info: Dict) -> bool:
-#         """
-#         Per your instruction:
-#         - Scan if category = personal_payment
-#         - Scan if category = unknown_org (non-whitelist .org)
-#         - Scan if category = keyword_donation_url
-#         """
-#         cat = info["category"]
-#         return cat in {"personal_payment", "unknown_org", "keyword_donation_url"}
-
-
-# ======================================================================
-# MODULE 8 — LabelAssembler
+# MODULE 4 — LabelAssembler
 # ======================================================================
 class LabelAssembler:
     def assemble(self, intent, endpoints, verification):
@@ -602,19 +537,10 @@ class LabelAssembler:
                 mech_str = "".join(mech_list) if mech_list else "none"
             else:
                 mech_str = mech_list
-
-            # pick the first non-other endpoint for domain
-            mech_domain_str = "none"
-            for ep in endpoints["endpoints"]:
-                if ep["mechanism"] != "other":
-                    mech_domain_str = ep.get("domain", "none")
-                    break
         else:
             mech_str = "none"
-            mech_domain_str = "none"
 
         labels.append(f"mechanism:{mech_str}")
-        labels.append(f"domain:{mech_domain_str}")
 
         # -----------------------------------------------------
         # 4. verified_org (endpoint-level)
@@ -625,6 +551,33 @@ class LabelAssembler:
         # 5. verified_type (account-level trusted/official/none)
         # -----------------------------------------------------
         labels.append(f"verified_type:{verification['verified_type']}")
+
+        print(verification['verified_type'], verification['verified_org'])
+        # -----------------------------------------------------
+        # 6. Final scam risk label (no/unsure/unknown)
+        # -----------------------------------------------------
+        
+        # Label potential scams as "unsure" -> risky
+        if payment_flag == "payment:yes" and verification['verified_org'] == "no" and verification['verified_type'] == "none":
+            labels.append("scam_risk:unsure") 
+
+        # Label trustworthy donations as "no" -> no risk
+        elif (
+            payment_flag == "payment:yes" 
+            and (verification['verified_org'] == "yes" or (
+                verification['verified_org'] == "domain" and 
+                verification['verified_type'] != "none"
+                ))
+        ):
+            labels.append("scam_risk:no")
+
+        # Lack information to justify
+        elif payment_flag == "payment:yes" :
+            labels.append("scam_risk:unknown")
+
+        else:
+            labels.append("scam_risk:no")
+    
 
         return labels
 
@@ -663,6 +616,10 @@ def label_post(
     )
     return labeler_client.tools.ozone.moderation.emit_event(data)
 
+# ============================================================
+# Output Parser
+# ============================================================
+
 def parse_labels_list(labels):
     """
     Convert list of labels:
@@ -673,9 +630,9 @@ def parse_labels_list(labels):
         "donation": "not_related",
         "payment": "no",
         "mechanism": "none",
-        "domain": "none",
         "verified_org": "no",
         "verified_type": "none",
+        "scam_risk": "no"
     }
 
     for label in labels:
@@ -688,14 +645,14 @@ def parse_labels_list(labels):
         elif label.startswith("mechanism:"):
             parsed["mechanism"] = label.split(":", 1)[1]
 
-        elif label.startswith("domain:"):
-            parsed["domain"] = label.split(":", 1)[1]
-
         elif label.startswith("verified_org:"):
             parsed["verified_org"] = label.split(":", 1)[1]
 
         elif label.startswith("verified_type:"):
             parsed["verified_type"] = label.split(":", 1)[1]
+
+        elif label.startswith("scam_risk:"):
+            parsed["scam_risk"] = label.split(":", 1)[1]
 
     return parsed
 
@@ -758,16 +715,15 @@ def main():
         reader = csv.DictReader(f_in)
         base_fields = list(reader.fieldnames or [])
 
-        # predicted columns (same schema, but prefixed so you can compare)
+        # predicted columns 
         pred_fields = [
             "pred_donation_related",
             "pred_contains_payment_mechanism",
             "pred_payment_mechanism",
             "pred_verified_org",
             "pred_verified_type",
-            "pred_domain"
+            "pred_scam"
         ]
-
 
         fieldnames = base_fields + [f for f in pred_fields if f not in base_fields]
         writer = csv.DictWriter(f_out, fieldnames=fieldnames)
@@ -796,13 +752,12 @@ def main():
             # Convert list-style labels → dict fields
             parsed = parse_labels_list(labels)
 
-
             row["pred_donation_related"] = parsed["donation"]
             row["pred_contains_payment_mechanism"] = parsed["payment"]
             row["pred_payment_mechanism"] = parsed["mechanism"]
             row["pred_verified_org"] = parsed["verified_org"]
             row["pred_verified_type"] = parsed["verified_type"]
-            row["pred_domain"] = parsed["domain"]
+            row["pred_scam"] = parsed["scam_risk"]
 
             writer.writerow(row)
 
