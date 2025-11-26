@@ -113,6 +113,12 @@
     "recipient_type": "mixed",
     "notes": ""
   },
+  "linktr.ee": {
+    "category": "fundraising_platform",
+    "cause": "other",
+    "recipient_type": "mixed",
+    "notes": "Link aggregator platform; hosts external donation/payment links but does not process payments itself."
+    },
   "pledge.to": {
     "category": "fundraising_platform",
     "cause": "other",

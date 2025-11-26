@@ -8,10 +8,10 @@ This system performs end-to-end donation-related activities detection for Bluesk
 4. Final label assembly:
        pred_donation_related:{yes|no},
        pred_contains_payment_mechanism:{yes|no},
-       pred_payment_mechanism:{fundraising_website|payment_link|payment_handle|qrcode|unsure|none},
+       pred_payment_mechanism:{fundraising_website|payment_link|payment_handle|qrcode|none},
        pred_verified_org:{yes|domain|no},
-       pred_verified_type:{official/trusted/none},
-       pred_scam:{no/unsure/unknown}
+       pred_verified_type:{official|none},
+       pred_scam:{no|unsure|unknown}
 
 """
 
