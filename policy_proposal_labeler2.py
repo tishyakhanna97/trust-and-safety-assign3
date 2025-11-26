@@ -92,55 +92,88 @@ def get_author_from_did(client, did: str) -> Optional[Dict[str, Any]]:
 
 
 # ======================================================================
-# MODULE 1 — Fuzzy Donation Intent Classifier
+# MODULE 1 — Donation Intent Classifier
 # ======================================================================
 class DonationIntentClassifier:
-    donation_keywords = [
-        "donate", "donation", "fundraising", "gofundme", 
-        "paypal", "cashapp", "cashtag", "venmo",
-        "zelle", "charity", "charity", "gofund"
-    ]
-
-    phrase_keywords = [
+    donation_keywords: List[str] = [
+        "donate",
+        "donation",
+        "fundraiser",
+        "fundraising",
+        "gofundme",
+        "gofund.me",
+        "venmo",
+        "paypal",
+        "cashapp",
+        "cashtag",
+        "zelle",
+        "help us raise",
+        "help me raise",
+        "raising money",
+        "support us",
+        "support me",
+        "chip in",
         "please help",
-        "help out",
+        "send help",
         "any amount helps",
-        "need your support",
-        "help my family",
-        "raise fund",
-        "raise money",
-        "need help",
-        "medical bills",
-        "please donate"
     ]
 
-    def fuzzy_contains(self, text: str, keywords: List[str], threshold=0.8) -> bool:
-        """
-        Fuzzy match: any token with similarity >= threshold is considered matched.
-        No external dependencies.
-        """
-        tokens = re.findall(r"[A-Za-z0-9]+", text.lower())
-        for t in tokens:
-            for kw in keywords:
-                if SequenceMatcher(None, t, kw).ratio() >= threshold:
+    # Optional: phrase-level patterns (captures payment handles / links)
+    payment_patterns: List[re.Pattern] = [
+        re.compile(r"\b\$[a-zA-Z0-9_]+\b"),  # $cashtag
+        re.compile(r"(venmo\.com|paypal\.me)\/\S+"),  # venmo/paypal links
+        re.compile(r"https?:\/\/\S*(gofundme|donate)\S*"),
+    ]
+
+    similarity_threshold: float = 0.9
+
+    def _keyword_match(self, lowered: str) -> bool:
+        tokens = lowered.split()
+        for kw in self.donation_keywords:
+            if kw in lowered:
+                return True
+
+            parts = kw.split()
+            window = len(parts)
+            if window == 0:
+                continue
+
+            for i in range(len(tokens) - window + 1):
+                candidate = " ".join(tokens[i : i + window])
+                if SequenceMatcher(None, kw, candidate).ratio() >= self.similarity_threshold:
                     return True
         return False
-    
-    def phrase_contains(self, text: str) -> bool:
-        return any(phrase in text for phrase in self.phrase_keywords)
 
-    def predict(self, text: str):
-        t = text.lower()
-        fuzzy_kw = self.fuzzy_contains(t, self.donation_keywords)
-        phrase_kw = self.phrase_contains(t)
+    def predict(self, text: str) -> Dict:
+        """
+        Rule-based donation intent detector.
+        """
+        lowered = text.lower()
 
-        score = 0.6 * fuzzy_kw + 0.6 * phrase_kw 
+        # keyword hits
+        kw_hit = self._keyword_match(lowered)
+
+        # pattern hits
+        pattern_hit = any(p.search(lowered) for p in self.payment_patterns)
+
+        score = 0.0
+        if kw_hit:
+            score += 0.6
+        if pattern_hit:
+            score += 0.4
+
+        # clamp
+        score = min(score, 1.0)
 
         return {
-            "donation_related": score > 0.5,
-            "confidence": score,
-            "signals": {"fuzzy_kw": fuzzy_kw, "phrase_kw": phrase_kw},
+            "is_donation_related": score > 0.5,
+            "confidence": round(score, 2),
+            "signals": {
+                "keyword_match": kw_hit,
+                "pattern_match": pattern_hit,
+            },
         }
+
 
 # ======================================================================
 # MODULE 2 — Endpoint Extractor (Extraction + Mechanism Classification)
@@ -156,9 +189,16 @@ class EndpointExtractor:
     trailing = ".,!?);:\"'"
 
     donation_path_kw = {
-        "donate", "donation", "donating", 
-        "fund", "fundraising", "support",
-        "give", "relief", "help", "appeal"
+        "donate",
+        "donation",
+        "donating",
+        "fund",
+        "fundraising",
+        "support",
+        "give",
+        "relief",
+        "help",
+        "appeal",
     }
 
     # -------------------------------------------------------------
@@ -169,7 +209,6 @@ class EndpointExtractor:
             url = "https://" + url
         host = urlparse(url).netloc.lower()
         return host[4:] if host.startswith("www.") else host
-
 
     # -------------------------------------------------------------
     # Extract URLs from facets
@@ -192,14 +231,15 @@ class EndpointExtractor:
 
         return urls
 
-
     # -------------------------------------------------------------
     # Extract URLs with regex from text
     # -------------------------------------------------------------
     def extract_urls(self, text: str) -> List[str]:
         urls = set()
 
-        email_domains = {e.split("@")[1].lower() for e in self.email_pattern.findall(text)}
+        email_domains = {
+            e.split("@")[1].lower() for e in self.email_pattern.findall(text)
+        }
 
         # URLs with http/https
         for raw in self.protocol_url_pattern.findall(text):
@@ -218,7 +258,6 @@ class EndpointExtractor:
 
         return list(urls)
 
-    
     # -------------------------------------------------------------
     # Extract URLs from embed blocks
     # -------------------------------------------------------------
@@ -259,9 +298,8 @@ class EndpointExtractor:
 
         return list(dict.fromkeys(urls))
 
-
     # -------------------------------------------------------------
-    # Extract QR URLs 
+    # Extract QR URLs
     # -------------------------------------------------------------
     def extract_qr_urls(self, post) -> List[str]:
         results = []
@@ -290,7 +328,6 @@ class EndpointExtractor:
 
         return list(dict.fromkeys(results))
 
-
     # -------------------------------------------------------------
     # Payment handles
     # -------------------------------------------------------------
@@ -299,23 +336,16 @@ class EndpointExtractor:
 
         # PayPal/Zelle email-style
         for email in self.email_pattern.findall(text):
-            results.append({
-                "mechanism": "payment_handle",
-                "value": email
-            })
+            results.append({"mechanism": "payment_handle", "value": email})
 
         # CashApp handles
         for h in self.cashapp_pattern.findall(text):
-            results.append({
-                "mechanism": "payment_handle",
-                "value": h
-            })
+            results.append({"mechanism": "payment_handle", "value": h})
 
         return results
 
-
     # -------------------------------------------------------------
-    # Classify URL 
+    # Classify URL
     # -------------------------------------------------------------
     def classify_url(self, url: str) -> Dict:
         domain = self._normalize_domain(url)
@@ -328,27 +358,29 @@ class EndpointExtractor:
             info = CHARITY_DB[domain]
             return {
                 "mechanism": (
-                    "payment_link" if info.get("category") == "p2p_payment"
+                    "payment_link"
+                    if info.get("category") == "p2p_payment"
                     else "fundraising_website"
                 ),
                 "domain": domain,
                 "value": url,
                 "in_charity_db": True,
-                "recipient_type": info.get("recipient_type", None)
+                "recipient_type": info.get("recipient_type", None),
             }
 
         # ---- Case 2: donation keyword path ----
         path_norm = re.sub(r"[^a-z]", "", path)
         netloc_norm = re.sub(r"[^a-z]", "", netloc)
 
-        if any(kw in path_norm for kw in self.donation_path_kw) or \
-           any(kw in netloc_norm for kw in self.donation_path_kw):
+        if any(kw in path_norm for kw in self.donation_path_kw) or any(
+            kw in netloc_norm for kw in self.donation_path_kw
+        ):
             return {
                 "mechanism": "fundraising_website",
                 "domain": domain,
                 "value": url,
                 "in_charity_db": False,
-                "recipient_type": None
+                "recipient_type": None,
             }
 
         # ---- fallback ----
@@ -357,9 +389,8 @@ class EndpointExtractor:
             "domain": domain,
             "value": url,
             "in_charity_db": False,
-            "recipient_type": None
+            "recipient_type": None,
         }
-
 
     # -------------------------------------------------------------
     # Run extractor
@@ -377,7 +408,7 @@ class EndpointExtractor:
 
         endpoints = []
 
-        # URL classification 
+        # URL classification
         for u in urls_all:
             endpoints.append(self.classify_url(u))
 
@@ -389,13 +420,15 @@ class EndpointExtractor:
 
         # Payment handles
         for h in handles:
-            endpoints.append({
-                "mechanism": "payment_handle",
-                "domain": "other",
-                "value": h["value"],
-                "in_charity_db": False,
-                "recipient_type": "personal"
-            })
+            endpoints.append(
+                {
+                    "mechanism": "payment_handle",
+                    "domain": "other",
+                    "value": h["value"],
+                    "in_charity_db": False,
+                    "recipient_type": "personal",
+                }
+            )
 
         # Detect mechanisms
         mechanisms_present = {
@@ -411,10 +444,8 @@ class EndpointExtractor:
         return {
             "contains_payment_mechanism": contains_payment,
             "mechanisms": mechanisms_list,
-            "endpoints": endpoints   
+            "endpoints": endpoints,
         }
-
-
 
 
 # ======================================================================
@@ -445,7 +476,7 @@ class OrgVerifier:
         Return:
         {
             "verified_org": yes/domain/no,           # endpoint-level
-            "verified_type": official/trusted/none          # account-level 
+            "verified_type": official/trusted/none          # account-level
         }
         """
 
@@ -495,10 +526,7 @@ class OrgVerifier:
         # -------------------------------------------------------------
         # Final output (account-level & endpoint-level)
         # -------------------------------------------------------------
-        return {
-            "verified_org": verified_org,
-            "verified_type": verified_type
-        }
+        return {"verified_org": verified_org, "verified_type": verified_type}
 
 
 # ======================================================================
@@ -513,7 +541,7 @@ class LabelAssembler:
         # -----------------------------------------------------
         donation_related = (
             "donation:related"
-            if intent["donation_related"]
+            if intent["is_donation_related"]
             else "donation:not_related"
         )
         labels.append(donation_related)
@@ -554,32 +582,35 @@ class LabelAssembler:
         # -----------------------------------------------------
         labels.append(f"verified_type:{verification['verified_type']}")
 
-        print(verification['verified_type'], verification['verified_org'])
+        print(verification["verified_type"], verification["verified_org"])
         # -----------------------------------------------------
         # 6. Final scam risk label (no/unsure/unknown)
         # -----------------------------------------------------
-        
+
         # Label potential scams as "unsure" -> risky
-        if payment_flag == "payment:yes" and verification['verified_org'] == "no" and verification['verified_type'] == "none":
-            labels.append("scam_risk:unsure") 
+        if (
+            payment_flag == "payment:yes"
+            and verification["verified_org"] == "no"
+            and verification["verified_type"] == "none"
+        ):
+            labels.append("scam_risk:unsure")
 
         # Label trustworthy donations as "no" -> no risk
-        elif (
-            payment_flag == "payment:yes" 
-            and (verification['verified_org'] == "yes" or (
-                verification['verified_org'] == "domain" and 
-                verification['verified_type'] != "none"
-                ))
+        elif payment_flag == "payment:yes" and (
+            verification["verified_org"] == "yes"
+            or (
+                verification["verified_org"] == "domain"
+                and verification["verified_type"] != "none"
+            )
         ):
             labels.append("scam_risk:no")
 
         # Lack information to justify
-        elif payment_flag == "payment:yes" :
+        elif payment_flag == "payment:yes":
             labels.append("scam_risk:unknown")
 
         else:
             labels.append("scam_risk:no")
-    
 
         return labels
 
@@ -618,9 +649,11 @@ def label_post(
     )
     return labeler_client.tools.ozone.moderation.emit_event(data)
 
+
 # ============================================================
 # Output Parser
 # ============================================================
+
 
 def parse_labels_list(labels):
     """
@@ -634,7 +667,7 @@ def parse_labels_list(labels):
         "mechanism": "none",
         "verified_org": "no",
         "verified_type": "none",
-        "scam_risk": "no"
+        "scam_risk": "no",
     }
 
     for label in labels:
@@ -677,7 +710,7 @@ def run_pipeline_on_post(client, labeler_client, post_url):
 
     # --- Pipeline Steps ---
     intent = intent_model.predict(text)
-    if not intent["donation_related"]:
+    if not intent["is_donation_related"]:
         return ["donation:not_related"]
 
     endpoints = extractor.run(text, post)
@@ -717,14 +750,14 @@ def main():
         reader = csv.DictReader(f_in)
         base_fields = list(reader.fieldnames or [])
 
-        # predicted columns 
+        # predicted columns
         pred_fields = [
             "pred_donation_related",
             "pred_contains_payment_mechanism",
             "pred_payment_mechanism",
             "pred_verified_org",
             "pred_verified_type",
-            "pred_scam"
+            "pred_scam",
         ]
 
         fieldnames = base_fields + [f for f in pred_fields if f not in base_fields]
@@ -766,7 +799,6 @@ def main():
             if args.apply_labels:
                 result = label_post(client, labeler_client, url, labels)
                 print("  applied:", result)
-
 
 
 if __name__ == "__main__":

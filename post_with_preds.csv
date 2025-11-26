@@ -1,0 +1,154 @@
+url,donation_related,contains_payment_mechanism,verified_org,urgent_language,scam,domain,pred_donation_related,pred_contains_payment_mechanism,pred_payment_mechanism,pred_verified_org,pred_verified_type,pred_scam
+https://bsky.app/profile/wikipedia.org/post/3m5tt4qoi3c2k,yes,funraising website,yes,no,no,other,related,yes,fundraising_website,domain,official,no
+https://bsky.app/profile/charlesgaba.com/post/3m5uwqmqlc22j,yes,funraising website,no,no,no,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/dave.newblood.games/post/3m5ub5t367k2i,yes,funraising website,no,no,unsure,other,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/fpwellman.bsky.social/post/3m5ttw7jeks2j,yes,funraising website,no,no,no,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/gtconway.bsky.social/post/3m5mv6irz222b,yes,funraising website,no,no,no,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/zohrankmamdani.bsky.social/post/3m5vyvtctn22j,yes,funraising website,yes,no,no,politics,related,yes,fundraising_website,yes,official,no
+https://bsky.app/profile/knitattheridge.bsky.social/post/3m5whsbt6fc2d,yes,funraising website,no,no,no,education,related,no,none,no,none,no
+https://bsky.app/profile/dao1donna.bsky.social/post/3m5r57l6tk22d,yes,funraising website,no,no,no,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/blackwolfrost.bsky.social/post/3m4l7fqn5g22o,yes,payment link,no,yes,unsure,other,not_related,no,none,no,none,no
+https://bsky.app/profile/cypheroftyr.bsky.social/post/3m5r4un7at224,yes,funraising website,no,no,no,other,related,yes,fundraising_website,no,official,unknown
+https://bsky.app/profile/gpetersen.bsky.social/post/3m5vswrtw6k2i,yes,funraising website,no,no,no,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/paruresis.org/post/3m5z4enk5gc2u,yes,no,no,no,no,other,related,no,none,no,none,no
+https://bsky.app/profile/pinkrangerlb.bsky.social/post/3m5z4e6snjs2i,yes,funraising website,no,no,unsure,other,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/gwillow.me/post/3m5z3hvzgm225,yes,funraising website,no,no,no,other,related,yes,fundraising_website,no,official,unknown
+https://bsky.app/profile/beedelores.bsky.social/post/3m5z3wbydic2t,yes,funraising website,no,no,unsure,other,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/andreatorti90.bsky.social/post/3m5z2jnylss2s,yes,funraising website,no,no,unsure,war,related,no,none,no,none,no
+https://bsky.app/profile/helpeman11.bsky.social/post/3m5z3tueg522u,yes,funraising website,no,no,unsure,war,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/solana-sews.bsky.social/post/3m5z3lx5cdc2l,yes,payment handle,no,no,unsure,other,related,yes,payment_handle,no,none,unsure
+https://bsky.app/profile/utopia-defer.red/post/3m65u5doqgk23,yes,funraising website,yes,no,no,politics,related,yes,fundraising_website,domain,none,unknown
+https://bsky.app/profile/charlesgaba.com/post/3m6d5kzn63s2v,yes,funraising website,no,no,unsure,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/united24media.com/post/3m63envb6ig27,yes,funraising website,no,no,no,war,related,yes,fundraising_website,no,official,unknown
+https://bsky.app/profile/ruemcclammyhand.bsky.social/post/3m6d4oyyj2k2t,yes,funraising website,no,no,unsure,poverty,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/beshearstan.bsky.social/post/3m66s6tr6722w,yes,funraising website,no,no,unsure,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/ddayen.bsky.social/post/3m6adj3v3ut2i,yes,funraising website,unsure,no,unsure,politics,related,yes,fundraising_website,domain,official,no
+https://bsky.app/profile/katmabu.bsky.social/post/3m64dvfhpok24,yes,funraising website,no,no,unsure,politics,related,yes,fundraising_website,yes,official,no
+https://bsky.app/profile/cherrifire.art/post/3m6bkmnzokk2m,yes,funraising website,no,no,unsure,other,related,yes,fundraising_website,domain,none,unknown
+https://bsky.app/profile/indivisible.org/post/3m6auiundu22x,yes,funraising website,no,no,unsure,politics,related,yes,fundraising_website,yes,official,no
+https://bsky.app/profile/mikesacks.bsky.social/post/3m63x4gqnwc24,yes,funraising website,no,no,unsure,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/awfuldaughter.bsky.social/post/3m47djgfz2c22,yes,funraising website,no,no,unsure,other,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/drjljohnson.bsky.social/post/3m6443ympvc27,yes,funraising website,yes,yes,unsure,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/nothoodlum.bsky.social/post/3m5bw354obs24,yes,funraising website,no,no,unsure,poverty,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/kampferwolf.bsky.social/post/3m6aztkuxv224,yes,payment link,no,no,unsure,poverty,related,yes,payment_handlepayment_link,no,none,unsure
+https://bsky.app/profile/clrenney.bsky.social/post/3m6bb6mwh3c2h,yes,no,no,no,unsure,politics,related,no,none,no,none,no
+https://bsky.app/profile/stinadale.bsky.social/post/3m6dxetseps2i,yes,funraising website,unsure,no,unsure,other,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/evamcdon.bsky.social/post/3m6dxee2lms2c,yes,funraising website,no,no,unsure,war,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/emergeaustralia.bsky.social/post/3m6dwtd3wkx24,yes,funraising website,no,no,unsure,other,related,no,none,no,none,no
+https://bsky.app/profile/scribalpractices.bsky.social/post/3m65uulr43222,yes,payment handle,no,no,unsure,poverty,related,yes,payment_handle,no,none,unsure
+https://bsky.app/profile/butchgeared.bsky.social/post/3m6d3dxeilc2r,yes,payment link,no,no,unsure,poverty,related,yes,payment_link,no,none,unsure
+https://bsky.app/profile/trckster.bsky.social/post/3m6dwej3wk223,yes,funraising website,no,no,unsure,other,related,no,none,no,none,no
+https://bsky.app/profile/blindcatrescue.bsky.social/post/3m66cmpnm4e2x,yes,funraising website,yes,no,no,animal,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/mommunism.bsky.social/post/3m62x3wvis22f,yes,funraising website,unsure,no,unsure,war,related,no,none,no,none,no
+https://bsky.app/profile/u24.gov.ua/post/3m5yqen3jk22c,yes,funraising website,yes,no,no,war,related,yes,fundraising_website,yes,official,no
+https://bsky.app/profile/24hoursukraine.bsky.social/post/3m63xmz552s26,yes,funraising website,unsure,no,no,war,related,no,none,no,none,no
+https://bsky.app/profile/aldhwvw.myatproto.social/post/3m66tthfswk2b,yes,funraising website,no,no,unsure,war,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/starwarsexplained.com/post/3m6f7afws5s2f,yes,funraising website,yes,no,no,poverty,related,yes,fundraising_website,domain,official,no
+https://bsky.app/profile/wikipedia.org/post/3m663mc5rrs2z,yes,funraising website,yes,no,no,other,related,yes,fundraising_website,domain,official,no
+https://bsky.app/profile/rvbdrm.com/post/3m6d54gyx222u,yes,funraising website,no,no,unsure,war,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/katmabu.bsky.social/post/3m6eabp7ifs2n,yes,funraising website,no,no,no,politics,related,yes,fundraising_website,yes,official,no
+https://bsky.app/profile/priya4az.bsky.social/post/3m6e4hj5xqc2w,yes,funraising website,no,no,no,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/ginburger.bsky.social/post/3m6f6nj6fs227,yes,funraising website,no,no,no,politics,related,yes,fundraising_website,yes,none,no
+http://bsky.app/profile/nothoodlum.bsky.social/post/3m5bw354obs24,yes,funraising website,no,no,unsure,poverty,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/drjljohnson.bsky.social/post/3m6443ympvc27,yes,funraising website,no,no,unsure,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/lolapatolla.bsky.social/post/3m67spzypak24,yes,funraising website,yes,no,no,animal,related,yes,fundraising_website,domain,none,unknown
+https://bsky.app/profile/charlesgaba.com/post/3m6dpjuu2c22k,yes,funraising website,unsure,no,unsure,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/eff.org/post/3m63xsceryg2g,yes,funraising website,yes,no,no,other,related,yes,fundraising_website,domain,official,no
+https://bsky.app/profile/francescahongwi.bsky.social/post/3m6cuc2rji22v,yes,funraising website,no,no,no,politics,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/liberalcurrents.com/post/3m6ezwlm5d22b,yes,funraising website,yes,no,no,other,related,yes,fundraising_website,no,official,unknown
+https://bsky.app/profile/indrapramitdas.bsky.social/post/3m67pqjaypc2c,yes,funraising website,no,no,unsure,war,related,no,none,no,none,no
+https://bsky.app/profile/taliajane.bsky.social/post/3m66vf75n7s2s,yes,funraising website,yes,no,unsure,other,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/nashvilleresist.bsky.social/post/3m66tcmmdfc2q,yes,funraising website,no,no,no,politics,related,no,none,no,none,no
+https://bsky.app/profile/davidtfletcher.bsky.social/post/3m62rpx6cdk2z,yes,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/flyingrodent.bsky.social/post/3m6c7ed6yxc2z,no,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/clio.bsky.social/post/3m6aijienvc2k,yes,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/roadrunner63.bsky.social/post/3m6cguofosk2v,yes,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/bestbeehave.bsky.social/post/3m64duy46zc2s,yes,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/tvjordyj-znak.bsky.social/post/3m6dxdw252224,yes,,,yes,,,related,no,none,no,none,no
+https://bsky.app/profile/vickies6320.bsky.social/post/3m6dxc64w5s2f,no,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/beejonson.me/post/3m6dx56vles2j,yes,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/rethinkplaces.bsky.social/post/3m6dx22qfx22r,no,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/monarchthemad.bsky.social/post/3m6dwwqlnns2n,yes,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/plushpanions.bsky.social/post/3m6dwp7qjq22u,no,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/chilangolandia.bsky.social/post/3m6amnbtnfc2q,no,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/patriottakes.bsky.social/post/3m5zaukzfac2o,yes,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/gorubenruben.bsky.social/post/3m6d3k7mzt225,no,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/thestar.com/post/3m5z6u2y2522g,no,,,no,,,related,no,none,no,official,no
+https://bsky.app/profile/tuppenceforthem.bsky.social/post/3m6bfolrsys2g,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/searambo.bsky.social/post/3m6chgs5yn22c,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/simplyedc.bsky.social/post/3m6d76kkwy222,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/newcartographer.bsky.social/post/3m6f6ohtma226,no,,,no,,,related,no,none,no,none,no
+https://bsky.app/profile/sherlynsvault.bsky.social/post/3m6cuetvyrk2z,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/lorak.bsky.social/post/3m6dl6u4s722v,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/broadwaybabyto.bsky.social/post/3m6dvshi35c2a,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/fakehistoryhunter.net/post/3m6bghn2e322v,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/katmabu.bsky.social/post/3m6difdzv3s2j,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/bookshopghost.bsky.social/post/3m6ax47ekg224,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/bookshopghost.bsky.social/post/3m6ax47ekg224,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/simplyedc.bsky.social/post/3m6d7a3ydhs22,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/ericswalwell.bsky.social/post/3m6ds7gyonc2v,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/bakerart.bsky.social/post/3m6acucq2rs2w,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/asol36.bsky.social/post/3m6c6jxuvc22w,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/therealjackhopkins.bsky.social/post/3m6du7itnpc2o,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/bmann.ca/post/3m6crtqkr4s27,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/screenmedia.bsky.social/post/3m6ahkpl6as2h,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/landguyminor.bsky.social/post/3m6cnyaz2is2e,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/miss-machete.bsky.social/post/3m6cz4ajve22r,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/katmabu.bsky.social/post/3m6f6e4qhck2q,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/nicholasgrossman.bsky.social/post/3m6f5eixpnc25,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/mrsbettybowers.bsky.social/post/3m6f3vavtyc2l,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/mintcashew.bsky.social/post/3m6f6jlqbnc2y,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/ace-of-dragons.bsky.social/post/3m6cyjxdq2c2u,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/atrupar.com/post/3m6f5nelrxb2t,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/saintzaiya.blacksky.app/post/3m6agyyuwe22o,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/mollyknight.bsky.social/post/3m6cbars5bk2z,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/screenmedia.bsky.social/post/3m6chzn7g7k2r,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/mrsbettybowers.bsky.social/post/3m6ezbgv5ec2f,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/zohrankmamdani.bsky.social/post/3m6f64ulsj22l,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/zohrankmamdani.bsky.social/post/3m6f64ulsj22l,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/yvalarevolution.bsky.social/post/3m6cfbbpwhk2q,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/dcmigrantmutualaid.org/post/3m6f33us7ik2g,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/screenmedia.bsky.social/post/3m6ciaxvpcs2r,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/sunnycogs.bsky.social/post/3m6as6c2io22p,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/hackadayofficial.bsky.social/post/3m6a6jvqw4y2m,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/pestilence4all.bsky.social/post/3m6c7hzrbx22q,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/saltpeterdraws.bsky.social/post/3m6cgtz332k2h,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/alanranta.bsky.social/post/3m6d5ug7ryk2q,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/andrew-yang.bsky.social/post/3m6cif6nul22p,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/screenmedia.bsky.social/post/3m6cqjdoiv225,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/brown-eyed-girl32.bsky.social/post/3m6clxkqq7k2a,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/jennisifire.bsky.social/post/3m6caxwz5vc2z,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/jonbois.bsky.social/post/3m6f7bak7bk2g,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/summeroakes.bsky.social/post/3m6bphtanek2v,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/hennystdave.bsky.social/post/3m6cor2cjhk2b,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/lioninthetrees.bsky.social/post/3m6f7rhopuc2e,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/activateva.bsky.social/post/3m6cmay6hcc22,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/miawong.bsky.social/post/3m5sqmie4l22a,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/bgrueskin.bsky.social/post/3m5vtyrngi22e,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/pleasebegneiss.bsky.social/post/3m5ndw36asc26,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/jakemgrumbach.bsky.social/post/3m5meptzxbc25,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/darrylayo.bsky.social/post/3m5ptoitfm224,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/raynegrimm.bsky.social/post/3l6wgeyandy27,yes,no,,no,no,no,not_related,no,none,no,none,no
+https://bsky.app/profile/sheogorath.bsky.social/post/3m5v32fhiok2n,yes,no,,no,no,no,related,no,none,no,none,no
+https://bsky.app/profile/redcrosscanada.bsky.social/post/3m663s2stms2n,no,no,yes,no,no,other,not_related,no,none,no,none,no
+https://bsky.app/profile/redcrosscanada.bsky.social/post/3m63hluaf2s2i,yes,no,yes,yes,no,disaster relief,not_related,no,none,no,none,no
+https://bsky.app/profile/redcrosscanada.bsky.social/post/3m63hlskhi22i,yes,no,yes,no,no,other,not_related,no,none,no,none,no
+https://bsky.app/profile/redcrosscanada.bsky.social/post/3m63hlqytlk2i,no,no,yes,no,no,disaster relief,not_related,no,none,no,none,no
+https://bsky.app/profile/redcrosscanada.bsky.social/post/3m5bwalxmek22,no,no,yes,no,no,other,not_related,no,none,no,none,no
+https://bsky.app/profile/redcrosscanada.bsky.social/post/3m4vbsxhirk26,no,no,yes,no,no,disaster relief,not_related,no,none,no,none,no
+https://bsky.app/profile/decappeal.bsky.social/post/3m3foup223q2o,yes,funraising website,yes,yes,no,disaster relief,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/decappeal.bsky.social/post/3lwh3dvvzyk2b,yes,funraising website,yes,no,no,disaster relief,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/decappeal.bsky.social/post/3m25cnfyv6i2z,no,funraising website,yes,no,no,other,not_related,no,none,no,none,no
+https://bsky.app/profile/decappeal.bsky.social/post/3m3anbqpoon2r,yes,funraising website,yes,no,no,disaster relief,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/decappeal.bsky.social/post/3m3csxd5hl32k,yes,funraising website,yes,yes,no,disaster relief,related,yes,fundraising_website,yes,none,no
+https://bsky.app/profile/veretskiy.bsky.social/post/3m5ldykuiws2d,yes,payment_handle,no,no,unsure,other,not_related,no,none,no,none,no
+https://bsky.app/profile/waseem33.bsky.social/post/3m575v55rk22v,yes,funraising website,no,no,unsure,war,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/lili-kh.bsky.social/post/3m4qyrnyisc2r,yes,funraising website,no,no,unsure,war,not_related,no,none,no,none,no
+https://bsky.app/profile/punkskunk47.bsky.social/post/3m2pmyxtgpk2x,yes,payment_handle,no,no,unsure,poverty,not_related,no,none,no,none,no
+https://bsky.app/profile/nakimushiart.bsky.social/post/3le2zife6s22e,no,,,no,,,not_related,no,none,no,none,no
+https://bsky.app/profile/tapunderground.bsky.social/post/3llagh6izkk2m,yes,qrcode,no,no,unsure,war,not_related,no,none,no,none,no
+https://bsky.app/profile/tapunderground.bsky.social/post/3llxyb4lg6225,yes,qrcode,no,yes,unsure,war,not_related,no,none,no,none,no
+https://bsky.app/profile/filmingamanduh.bsky.social/post/3lmaaalosss26,yes,funraising website,no,no,unsure,other,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/veretskiy.bsky.social/post/3luf73t3vo22m,yes,payment_handle,no,no,unsure,war,not_related,no,none,no,none,no
+https://bsky.app/profile/keekathebee.bsky.social/post/3lf4dwlcl5c27,yes,funraising website,no,no,unsure,education,related,yes,fundraising_website,no,none,unsure
+https://bsky.app/profile/tapunderground.bsky.social/post/3lmlkvvqckc24,yes,qrcode,no,yes,unsure,war,related,no,none,no,none,no
