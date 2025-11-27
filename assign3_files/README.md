@@ -1,4 +1,4 @@
-# README: T&S Assignment 3: Donation Labeler Pipeline
+# README: T&S Assignment 3 - Donation Labeler Pipeline
 
 Cecilia Yiyue Chen, Kelly Wang, Tishya Khanna, Yixuan Liu
 
