@@ -31,7 +31,7 @@ A manually curated reference list of known fundraising domains and payment provi
 This file is used by the Endpoint Extractor to classify URL mechanisms and detect trusted fundraising endpoints.
 
 * `data.csv`: 
-Input dataset for testing and offline evaluation. The file must contain at least one of the columns: \verb|url| or \verb|source_url|. Additional fields (donation intent, verified org, domain, etc.) may be present for comparison but are not required.
+Input dataset for testing and offline evaluation. The file must contain at least one of the columns: `url` or `source_url`. Additional fields (donation intent, verified org, domain, etc.) may be present for comparison but are not required.
 
 * `post_with_preds.csv`:
 Output file automatically generated after running the pipeline. Contains the original dataset columns plus predictions:
@@ -42,7 +42,7 @@ Output file automatically generated after running the pipeline. Contains the ori
     pred_payment_mechanism,
     pred_verified_org,
     pred_verified_type,  
-    pred_scam  
+    pred_scam,
 ```
 
 * `technical overview.png`:
@@ -104,11 +104,13 @@ The final scam-risk classification is derived from a combination of account-leve
 
 * **Label Assembler**: Outputs structured labels for each dimension and assigns a final scam-risk label based on defined trust rules.
 
+![Workflow Diagram](https://github.com/tishyakhanna97/trust-and-safety-assign3/blob/main/assign3_files/technical%20overview.png)
+
 ## Testing Instructions
 
 To test the system with your own dataset:
 
-* Prepare a CSV containing a column named `url` or `source_url`.
+* Prepare a .CSV containing a column named `url` or `source_url`.
 * Place the file in the repository root.
 * Run:
     ```
