@@ -125,7 +125,7 @@ class DonationIntentClassifier:
         re.compile(r"https?:\/\/\S*(gofundme|donate)\S*"),
     ]
 
-    similarity_threshold: float = 0.9
+    similarity_threshold: float = 0.8
 
     def _keyword_match(self, lowered: str) -> bool:
         tokens = lowered.split()
