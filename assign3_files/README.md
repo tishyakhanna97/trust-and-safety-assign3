@@ -6,7 +6,7 @@ Cecilia Yiyue Chen, Kelly Wang, Tishya Khanna, Yixuan Liu
 
 This [GitHub repository](https://github.com/tishyakhanna97/trust-and-safety-assign3) implements a modular pipeline for detecting donation-related posts on Bluesky and assessing payment endpoints for potential scam risks. The system consists of four main modules: (1) Donation Intent Classifier, (2) Endpoint Extractor, (3) Org/Account Verifier, and (4) Label Assembler. The pipeline ingests post URLs, extracts relevant signals, verifies account and endpoint trustworthiness, and outputs structured labels, including a final scam-risk assessment.
 
-The Video Presentation introducing this labeler is avaiable at [Youtube](https://youtu.be/uiikAyVbXSk).
+The Video Presentation introducing this labeler is avaiable at [Youtube](https://youtu.be/qV3ozNHv7Ko).
 
 ## Repository Contents
 
